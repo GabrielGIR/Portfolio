@@ -1,0 +1,68 @@
+/* Única fuente de valores de diseño. Los componentes solo usan var(--token). */
+:root {
+  /* Color (paleta final de docs/PLAN.md, Fase 1) */
+  --bg: #0f0e13;
+  --surface: #17161c;
+  --surface-raised: #1f1e26;
+  --border: #2c2b35;
+  --primary: #606c38;
+  --primary-hover: #545f31;
+  --primary-text: #8f9c57;
+  --text: #e8e8ec;
+  --text-muted: #9a9aa6;
+
+  /* Vidrio apagado: superficie translúcida sobre el fondo de ondas */
+  --glass: color-mix(in srgb, var(--surface) 72%, transparent);
+  --glass-border: color-mix(in srgb, var(--text) 10%, transparent);
+  --scrim: color-mix(in srgb, var(--bg) 60%, transparent);
+
+  /* Tipografía: una sola familia sans serif, la del sistema (sin descargas) */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --text-display: clamp(2.75rem, 1.5rem + 6vw, 6.5rem);
+
+  --leading-tight: 0.98;
+  --leading-snug: 1.2;
+  --leading-body: 1.55;
+  --tracking-display: -0.035em;
+  --tracking-normal: 0;
+  --measure: 62ch;
+
+  /* Espaciado (escala de 4px) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: clamp(5rem, 4rem + 5vw, 9rem); /* separación entre secciones */
+
+  /* Marco de la página */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --content-width: 72rem;
+
+  /* Radios */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999px;
+
+  /* Sombras: solo para lo que flota (menú, diálogo) */
+  --shadow-float: 0 12px 40px color-mix(in srgb, var(--bg) 70%, transparent);
+
+  /* Movimiento (máximo 600 ms por elemento) */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
