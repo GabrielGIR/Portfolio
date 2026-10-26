@@ -1,0 +1,16 @@
+.email {
+  display: inline-block;
+  margin-bottom: var(--space-6);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  overflow-wrap: anywhere;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
