@@ -1,37 +1,62 @@
-import { useActiveSection } from '../hooks/useActiveSection'
+import { useRef } from 'react'
+import { gsap } from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { profile } from '../data/profile'
+import Icon, { type IconName } from './Icon'
+import { useActiveSection } from '../hooks/useActiveSection'
+import { useMarker } from '../hooks/useMarker'
+import { ease, reducedMotion, seconds } from '../lib/motion'
 import layout from '../styles/layout.module.css'
 import styles from './Nav.module.css'
 
-const links = [
-  { href: '#proyectos', label: 'Proyectos' },
-  { href: '#sobre-mi', label: 'Sobre mí' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contacto', label: 'Contacto' },
+const links: { id: IconName; label: string }[] = [
+  { id: 'proyectos', label: 'Proyectos' },
+  { id: 'sobre-mi', label: 'Sobre mí' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contacto', label: 'Contacto' },
 ]
 
 export default function Nav() {
-  const active = useActiveSection(['inicio', ...links.map((l) => l.href.slice(1))]) // 'inicio' limpia el foco al volver arriba
+  // 'inicio' limpia el foco al volver arriba
+  const active = useActiveSection(['inicio', ...links.map((l) => l.id)])
+  const trackRef = useRef<HTMLDivElement>(null)
+  const dotRef = useRef<HTMLSpanElement>(null)
+  const navRef = useRef<HTMLElement>(null)
+  useMarker(trackRef, dotRef, active)
+
+  // Arranque: la barra baja desde arriba, como el XMB al encender la consola.
+  useGSAP(
+    () => {
+      if (reducedMotion()) return
+      gsap.from(navRef.current, { yPercent: -100, duration: seconds('--duration-slow'), ease: ease('--ease-out') })
+    },
+    { scope: navRef },
+  )
+
 
   return (
     <>
       <a className={styles.skip} href="#contenido">
         Saltar al contenido
       </a>
-      <nav className={styles.nav} aria-label="Principal">
+      <nav ref={navRef} className={styles.nav} aria-label="Principal">
         <div className={`${layout.container} ${styles.inner}`}>
           <a className={styles.brand} href="#inicio">
             {profile.name}
           </a>
-          <ul className={styles.links}>
-            {links.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} aria-current={active === l.href.slice(1) ? 'location' : undefined}>
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div ref={trackRef} className={styles.track}>
+            <ul className={styles.links}>
+              {links.map((l) => (
+                <li key={l.id}>
+                  <a href={`#${l.id}`} aria-current={active === l.id ? 'location' : undefined}>
+                    <Icon name={l.id} className={styles.icon} />
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <span ref={dotRef} className={styles.dot} aria-hidden="true" />
+          </div>
         </div>
       </nav>
     </>

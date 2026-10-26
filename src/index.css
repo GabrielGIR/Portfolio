@@ -36,6 +36,13 @@ canvas {
   max-width: 100%;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
 a {
   color: var(--primary-text);
 }

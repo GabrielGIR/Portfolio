@@ -1,0 +1,29 @@
+// Íconos de línea propios (24x24, trazo currentColor): uno por categoría del XMB y las flechas de los links.
+const paths = {
+  proyectos: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
+  'sobre-mi': 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',
+  skills: 'M12 3 2 8l10 5 10-5-10-5zM2 13l10 5 10-5M2 18l10 5 10-5',
+  contacto: 'M3 5h18v14H3zM3 6l9 7 9-7',
+  'arrow-down': 'M12 5v14M6 13l6 6 6-6',
+  'arrow-out': 'M7 17 17 7M8 7h9v9',
+}
+
+export type IconName = keyof typeof paths
+
+export default function Icon({ name, className }: { name: IconName; className?: string }) {
+  return (
+    <svg
+      className={className}
+      data-dir={name === 'arrow-out' ? 'out' : name === 'arrow-down' ? 'down' : undefined}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d={paths[name]} />
+    </svg>
+  )
+}

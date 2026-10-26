@@ -16,7 +16,8 @@
   --glass-border: color-mix(in srgb, var(--text) 10%, transparent);
   --scrim: color-mix(in srgb, var(--bg) 60%, transparent);
 
-  /* Tipografía: una sola familia sans serif, la del sistema (sin descargas) */
+  /* Sora solo en títulos y nav (Google Fonts, display=swap); el texto corrido sigue en la del sistema */
+  --font-display: "Sora", var(--font-sans);
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --weight-regular: 400;
   --weight-medium: 500;
@@ -26,7 +27,9 @@
   --text-base: 1.0625rem;
   --text-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
   --text-xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
-  --text-display: clamp(2.75rem, 1.5rem + 6vw, 6.5rem);
+  --text-2xl: clamp(1.75rem, 0.75rem + 3.5vw, 3.75rem);
+  --text-display: clamp(2.5rem, 1.25rem + 5vw, 5.5rem);
+  --text-hero: clamp(3.25rem, 0.75rem + 9vw, 10rem);
 
   --leading-tight: 0.98;
   --leading-snug: 1.2;
@@ -55,6 +58,9 @@
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
   --radius-pill: 999px;
+
+  /* Foco tipo XMB: cuánto crece el ítem elegido */
+  --scale-focus: 1.15;
 
   /* Sombras: solo para lo que flota (menú, diálogo) */
   --shadow-float: 0 12px 40px color-mix(in srgb, var(--bg) 70%, transparent);

@@ -20,6 +20,8 @@ Un competidor cualquiera (otro portfolio dev oscuro) no tiene esa referencia de 
 
 ## Tipografía
 
+**Rediseño (2026-10-26):** títulos, nav y datos destacados en **Sora** (Google Fonts, 400/600/700, `display=swap`, token `--font-display`); el texto corrido sigue en la fuente del sistema. El nombre del hero usa `--text-hero`.
+
 Una familia sans serif del sistema (`--font-sans`), sin descargas. Pesos: 400, 500 y 700. Títulos grandes con tracking negativo (`--tracking-display`) e interlineado ajustado; texto corrido a 17px, interlineado 1.55, línea de hasta 62 caracteres. Si más adelante se quiere una fuente propia, entra con `display=swap`, máximo 2 familias y 4 pesos.
 
 ## Color
@@ -38,6 +40,8 @@ Base oscura con un único acento, el verde oliva.
 Contrastes ya medidos en `docs/PLAN.md`; todos los pares de texto pasan 4.5:1.
 
 ## Secciones
+
+**Rediseño (2026-10-26):** Hero tipo cartel (nombre a dos líneas, rol y botones a la izquierda, tagline a la derecha); Proyectos como columna XMB con detalle al lado; Sobre mí con texto grande y ficha de datos; Skills en filas editoriales; Contacto con email grande y botón de copiar; footer con el nombre a todo el ancho. La tabla de abajo es la versión anterior.
 
 | Sección | Qué lleva | Composición |
 |---|---|---|

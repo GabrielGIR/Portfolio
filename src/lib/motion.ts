@@ -1,7 +1,8 @@
 import { gsap } from 'gsap'
 import { CustomEase } from 'gsap/CustomEase'
+import { useGSAP } from '@gsap/react'
 
-gsap.registerPlugin(CustomEase)
+gsap.registerPlugin(CustomEase, useGSAP)
 
 const token = (name: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim()
@@ -14,3 +15,5 @@ export const seconds = (name: string) => {
 
 export const ease = (name: string) =>
   CustomEase.create(name, token(name).replace(/^cubic-bezier\(|\)$/g, ''))
+
+export const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches

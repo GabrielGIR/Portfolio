@@ -6,6 +6,12 @@
   pointer-events: none;
 }
 
+/* Envuelve a Threads para poder fundirlo al aparecer */
+.fill {
+  position: absolute;
+  inset: 0;
+}
+
 /* Capa que protege el contraste del texto sobre las líneas */
 .root::after {
   content: "";

@@ -1,4 +1,6 @@
 import type { Project } from '../data/projects'
+import Icon from './Icon'
+import layout from '../styles/layout.module.css'
 import styles from './ProjectCard.module.css'
 
 // '#' es el placeholder de los datos de prueba: sin URL real no se muestra el link.
@@ -16,41 +18,43 @@ export default function ProjectCard({ project }: { project: Project }) {
         height={675}
         loading="lazy"
       />
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.description}>{description}</p>
-      <ul className={styles.tags} aria-label="Tecnologías">
-        {tags.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
-      {(isReal(repoUrl) || isReal(liveUrl)) && (
-        <ul className={styles.links}>
-          {isReal(repoUrl) && (
-            <li>
+      <div className={styles.body}>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.description}>{description}</p>
+        <ul className={styles.tags} aria-label="Tecnologías">
+          {tags.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+        {(isReal(repoUrl) || isReal(liveUrl)) && (
+          <div className={styles.links}>
+            {isReal(liveUrl) && (
               <a
-                href={repoUrl}
-                aria-label={`Repositorio de ${title}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Repositorio
-              </a>
-            </li>
-          )}
-          {isReal(liveUrl) && (
-            <li>
-              <a
+                className={styles.primary}
                 href={liveUrl}
                 aria-label={`Demo de ${title}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Demo
+                <Icon name="arrow-out" className={layout.arrow} />
               </a>
-            </li>
-          )}
-        </ul>
-      )}
+            )}
+            {isReal(repoUrl) && (
+              <a
+                className={styles.secondary}
+                href={repoUrl}
+                aria-label={`Repositorio de ${title}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Repositorio
+                <Icon name="arrow-out" className={layout.arrow} />
+              </a>
+            )}
+          </div>
+        )}
+      </div>
     </article>
   )
 }

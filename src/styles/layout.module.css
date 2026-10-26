@@ -10,8 +10,41 @@
   scroll-margin-top: var(--space-8);
 }
 
+/* Encabezado de sección: ícono de la categoría, título y un dato real a la derecha */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--space-7);
+  height: var(--space-7);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  color: var(--primary-text);
+}
+
+.badge svg {
+  width: var(--space-5);
+  height: var(--space-5);
+}
+
+.meta {
+  margin: 0 0 0 auto;
+  align-self: flex-end;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+}
+
 .title {
-  margin: 0 0 var(--space-7);
+  margin: 0;
   font-size: var(--text-display);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
@@ -19,18 +52,41 @@
 }
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   padding: var(--space-3) var(--space-5);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-pill);
   background: var(--glass);
   color: var(--text);
   font-weight: var(--weight-medium);
+  font-family: inherit;
+  font-size: inherit;
   text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
 }
 
 .button:hover {
   background: var(--surface-raised);
+}
+
+/* Flechas de los links: se corren hacia donde llevan al pasar el mouse */
+.arrow {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+a:hover > .arrow[data-dir='out'] {
+  transform: translate(calc(var(--space-1) / 2), calc(var(--space-1) / -2));
+}
+
+a:hover > .arrow[data-dir='down'] {
+  transform: translateY(calc(var(--space-1) / 2));
 }
 
 .buttonPrimary {
@@ -41,4 +97,11 @@
 .buttonPrimary:hover {
   border-color: var(--primary-hover);
   background: var(--primary-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .arrow {
+    transition: none;
+  }
 }

@@ -7,7 +7,15 @@ const year = new Date().getFullYear()
 export default function Footer() {
   return (
     <footer className={`${layout.container} ${styles.footer}`}>
-      © {year} {profile.name}
+      <p className={styles.name} aria-hidden="true">
+        {profile.name}
+      </p>
+      <div className={styles.bar}>
+        <span>
+          © {year} {profile.name}
+        </span>
+        <a href="#inicio">Volver arriba</a>
+      </div>
     </footer>
   )
 }
