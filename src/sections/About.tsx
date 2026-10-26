@@ -1,14 +1,19 @@
+import { useRef } from 'react'
+import { useReveal } from '../hooks/useReveal'
 import { profile } from '../data/profile'
 import layout from '../styles/layout.module.css'
 import styles from './About.module.css'
 
 export default function About() {
+  const ref = useRef<HTMLElement>(null)
+  useReveal(ref)
+
   return (
-    <section id="sobre-mi" className={`${layout.container} ${layout.section}`}>
-      <h2 className={layout.title}>Sobre mí</h2>
+    <section ref={ref} id="sobre-mi" className={`${layout.container} ${layout.section}`}>
+      <h2 data-reveal className={layout.title}>Sobre mí</h2>
       <div className={styles.grid}>
-        <p className={styles.text}>{profile.about}</p>
-        <ul className={styles.links}>
+        <p data-reveal className={styles.text}>{profile.about}</p>
+        <ul data-reveal className={styles.links}>
           <li>
             <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
               LinkedIn
