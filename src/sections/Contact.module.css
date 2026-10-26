@@ -14,3 +14,8 @@
   padding: 0;
   list-style: none;
 }
+
+.links a {
+  display: inline-block;
+  padding-block: var(--space-2);
+}

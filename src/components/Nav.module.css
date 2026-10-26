@@ -1,38 +1,92 @@
+.skip {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--gutter);
+  z-index: 20;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+  color: var(--text);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: translateY(0);
+}
+
+/* Opaca: con vidrio, el contenido de las tarjetas se mezclaba con los links al hacer scroll */
 .nav {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--glass);
+  background: var(--surface);
 }
 
 .inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-5);
-  padding-block: var(--space-3);
+  padding-block: var(--space-2);
 }
 
 .brand {
   color: var(--text);
   font-weight: var(--weight-bold);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .links {
+  grid-column: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+  gap: 0 var(--space-5);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .links a {
+  position: relative;
+  display: inline-block;
+  padding-block: var(--space-3);
   color: var(--text-muted);
   text-decoration: none;
 }
 
 .links a:hover {
   color: var(--text);
+}
+
+/* Foco tipo XMB: la sección activa se agranda, se aclara y lleva un punto debajo */
+.links a[aria-current='location'] {
+  color: var(--text);
+  transform: scale(1.15);
+}
+
+.links a[aria-current='location']::after {
+  content: "";
+  position: absolute;
+  bottom: var(--space-1);
+  left: 50%;
+  width: var(--space-2);
+  height: var(--space-2);
+  margin-left: calc(var(--space-1) * -1);
+  border-radius: var(--radius-pill);
+  background: var(--primary-text);
+}
+
+/* En pantallas chicas el nombre ya está en el hero: los links ocupan toda la fila */
+@media (max-width: 30rem) {
+  .brand {
+    display: none;
+  }
+
+  .links {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: space-between;
+  }
 }

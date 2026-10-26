@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-25T00:00:00Z",
+  "title": "Design System: Portfolio de Gabriel Ignacio Roel",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Oliva", "canonical": "#606c38" },
+      "primary-hover": { "role": "primary", "displayName": "Oliva oscuro", "canonical": "#545f31" },
+      "primary-text": { "role": "primary", "displayName": "Oliva claro", "canonical": "#8f9c57" },
+      "bg": { "role": "neutral", "displayName": "Noche", "canonical": "#0f0e13" }
+    },
+    "shadows": [
+      { "name": "float", "value": "0 12px 40px color-mix(in srgb, var(--bg) 70%, transparent)", "purpose": "Solo para lo que flota; sin consumidores hoy." }
+    ],
+    "motion": [
+      { "name": "duration-fast", "value": "150ms", "purpose": "Delay del Hero y base del stagger (/2)." },
+      { "name": "duration-base", "value": "300ms", "purpose": "Definido, sin consumidores." },
+      { "name": "duration-slow", "value": "600ms", "purpose": "Entrada de [data-reveal] y SplitText; máximo por elemento." },
+      { "name": "ease-out", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Easing de reveal y SplitText, leído por GSAP." },
+      { "name": "ease-in-out", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "Definido, sin consumidores." }
+    ],
+    "breakpoints": [
+      { "name": "nav-movil", "value": "30rem (max-width)" },
+      { "name": "grillas", "value": "48rem (min-width)" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón primario",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal del Hero.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Ver proyectos</a>",
+      "css": ".ds-btn-primary{display:inline-block;padding:var(--space-3) var(--space-5);border:1px solid var(--primary);border-radius:var(--radius-pill);background:var(--primary);color:var(--text);font-weight:var(--weight-medium);text-decoration:none}.ds-btn-primary:hover{border-color:var(--primary-hover);background:var(--primary-hover)}.ds-btn-primary:focus-visible{outline:2px solid var(--primary-text);outline-offset:2px}"
+    },
+    {
+      "name": "Botón de vidrio",
+      "kind": "button",
+      "refersTo": "button-glass",
+      "description": "Acción secundaria.",
+      "html": "<a class=\"ds-btn-glass\" href=\"#\">Contacto</a>",
+      "css": ".ds-btn-glass{display:inline-block;padding:var(--space-3) var(--space-5);border:1px solid var(--glass-border);border-radius:var(--radius-pill);background:var(--glass);color:var(--text);font-weight:var(--weight-medium);text-decoration:none}.ds-btn-glass:hover{background:var(--surface-raised)}.ds-btn-glass:focus-visible{outline:2px solid var(--primary-text);outline-offset:2px}"
+    },
+    {
+      "name": "Tarjeta de proyecto",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Vidrio apagado con título, descripción y tags.",
+      "html": "<article class=\"ds-card\"><h3>Proyecto</h3><p>Descripción</p><span class=\"ds-chip\">Tag</span></article>",
+      "css": ".ds-card{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5);border:1px solid var(--glass-border);border-radius:var(--radius-lg);background:var(--glass);color:var(--text)}.ds-card h3{margin:0;font-size:var(--text-lg);line-height:var(--leading-snug)}.ds-card p{margin:0;color:var(--text-muted)}.ds-chip{align-self:flex-start;padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--surface-raised);font-size:var(--text-sm)}"
+    },
+    {
+      "name": "Navegación",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Barra sticky opaca con marca y anclas.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Nombre</a><a href=\"#\">Proyectos</a><a href=\"#\">Contacto</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);padding:var(--space-2) var(--gutter);background:var(--surface)}.ds-nav a{padding-block:var(--space-3);color:var(--text-muted);text-decoration:none}.ds-nav a:hover{color:var(--text)}.ds-nav .ds-brand{color:var(--text);font-weight:var(--weight-bold)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El menú de la consola",
+    "overview": "Portfolio oscuro donde el nombre y los proyectos son lo único grande, sobre cintas de luz lentas. Plano, un solo acento verde oliva, vidrio apagado solo en tarjetas.",
+    "keyCharacteristics": [
+      "Un solo acento; texto en verde siempre con --primary-text",
+      "Dos tamaños dominan: --text-display y --text-base",
+      "Vidrio sin backdrop-filter; nav opaca",
+      "Sin transition ni animation en CSS; GSAP lee duración y easing de los tokens"
+    ],
+    "rules": [
+      { "name": "The Olive Text Rule", "body": "El texto en verde es --primary-text; --primary solo como relleno bajo --text.", "section": "colors" },
+      { "name": "The Flat At Rest Rule", "body": "Ninguna superficie lleva sombra en reposo.", "section": "elevation" },
+      { "name": "The Opaque Nav Rule", "body": "La nav es --surface opaca.", "section": "elevation" },
+      { "name": "The Token Only Rule", "body": "Ningún módulo CSS escribe valores propios; todo sale de tokens.css.", "section": "layout" }
+    ],
+    "dos": [
+      "Do usar solo var(--token) en CSS Modules.",
+      "Do leer duración y easing desde los tokens con seconds() y ease() al animar con GSAP."
+    ],
+    "donts": [
+      "Don't agregar transition ni animation en CSS.",
+      "Don't usar backdrop-filter ni vidrio en la nav.",
+      "Don't poner sombras en reposo ni gradientes de decoración."
+    ]
+  }
+}

@@ -6,7 +6,7 @@ Fuente de verdad de la Fase 1. Los valores viven en `src/styles/tokens.css`; si 
 
 ## Idea
 
-Sobre esta página, **el menú cruzado de la PS3 (XMB)** se vuelve **la navegación y el fondo**: una barra horizontal simple con las secciones, y cintas de luz lentas detrás de todo (componente Threads, Fase 2).
+Sobre esta página, **el menú cruzado de la PS3 (XMB)** se vuelve **la navegación y el fondo**: una barra horizontal centrada con las secciones, donde la sección visible toma el foco (más grande, más clara y con un punto debajo, como el ítem elegido del XMB), y cintas de luz lentas detrás de todo (componente Threads, Fase 2).
 
 Un competidor cualquiera (otro portfolio dev oscuro) no tiene esa referencia de consola ni el verde oliva apagado.
 

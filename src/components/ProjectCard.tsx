@@ -1,6 +1,9 @@
 import type { Project } from '../data/projects'
 import styles from './ProjectCard.module.css'
 
+// '#' es el placeholder de los datos de prueba: sin URL real no se muestra el link.
+const isReal = (url?: string): url is string => !!url && url !== '#'
+
 export default function ProjectCard({ project }: { project: Project }) {
   const { title, description, image, tags, repoUrl, liveUrl } = project
   return (
@@ -20,22 +23,34 @@ export default function ProjectCard({ project }: { project: Project }) {
           <li key={t}>{t}</li>
         ))}
       </ul>
-      <ul className={styles.links}>
-        {repoUrl && (
-          <li>
-            <a href={repoUrl} target="_blank" rel="noopener noreferrer">
-              Repositorio
-            </a>
-          </li>
-        )}
-        {liveUrl && (
-          <li>
-            <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-              Demo
-            </a>
-          </li>
-        )}
-      </ul>
+      {(isReal(repoUrl) || isReal(liveUrl)) && (
+        <ul className={styles.links}>
+          {isReal(repoUrl) && (
+            <li>
+              <a
+                href={repoUrl}
+                aria-label={`Repositorio de ${title}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Repositorio
+              </a>
+            </li>
+          )}
+          {isReal(liveUrl) && (
+            <li>
+              <a
+                href={liveUrl}
+                aria-label={`Demo de ${title}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Demo
+              </a>
+            </li>
+          )}
+        </ul>
+      )}
     </article>
   )
 }

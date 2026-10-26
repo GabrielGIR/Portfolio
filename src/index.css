@@ -44,3 +44,7 @@ a {
   outline: 2px solid var(--primary-text);
   outline-offset: 2px;
 }
+
+noscript p {
+  padding: var(--gutter);
+}
