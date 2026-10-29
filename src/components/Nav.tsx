@@ -11,8 +11,8 @@ import styles from './Nav.module.css'
 
 const links: { id: IconName; label: string }[] = [
   { id: 'proyectos', label: 'Proyectos' },
-  { id: 'sobre-mi', label: 'Sobre mí' },
   { id: 'skills', label: 'Skills' },
+  { id: 'sobre-mi', label: 'Sobre mí' },
   { id: 'contacto', label: 'Contacto' },
 ]
 

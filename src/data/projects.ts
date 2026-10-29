@@ -13,18 +13,18 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "proyecto-1",
-    title: "Proyecto 1",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Gestión canchas de padel",
+    description: "Un sistema que ayuda a clubes a administrar sus canchas de padel",
     image: "/projects/placeholder.svg",
-    tags: ["Lorem", "Ipsum"],
+    tags: ["TYPESCRIPT", "NESTJS", "ANGULAR", "DOCKER"],
     repoUrl: "#",
     liveUrl: "#",
     featured: true,
   },
   {
     slug: "proyecto-2",
-    title: "Proyecto 2",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "SERVICIOS SAN JOSÉ",
+    description: "Rediseño de landing page más un sistema para poder llevar regsitros de sus servicios",
     image: "/projects/placeholder.svg",
     tags: ["Lorem", "Ipsum"],
     repoUrl: "#",

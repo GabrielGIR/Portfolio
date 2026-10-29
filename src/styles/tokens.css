@@ -10,6 +10,8 @@
   --primary-text: #8f9c57;
   --text: #e8e8ec;
   --text-muted: #9a9aa6;
+  /* Borde de campos de formulario: 3.62 sobre --bg y 3.39 sobre --surface (controles piden 3:1) */
+  --border-input: #6b6a78;
 
   /* Vidrio apagado: superficie translúcida sobre el fondo de ondas */
   --glass: color-mix(in srgb, var(--surface) 72%, transparent);

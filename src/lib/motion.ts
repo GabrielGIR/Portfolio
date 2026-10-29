@@ -4,7 +4,7 @@ import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(CustomEase, useGSAP)
 
-const token = (name: string) =>
+export const token = (name: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim()
 
 // Duración y easing salen de tokens.css (--duration-*, --ease-*); GSAP no entiende var().

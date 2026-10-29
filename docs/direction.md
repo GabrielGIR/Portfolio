@@ -20,7 +20,7 @@ Un competidor cualquiera (otro portfolio dev oscuro) no tiene esa referencia de 
 
 ## Tipografía
 
-**Rediseño (2026-10-26):** títulos, nav y datos destacados en **Sora** (Google Fonts, 400/600/700, `display=swap`, token `--font-display`); el texto corrido sigue en la fuente del sistema. El nombre del hero usa `--text-hero`.
+**Rediseño (2026-10-26):** títulos, nav y datos destacados en **Sora** (Google Fonts, 400/600/700, `display=swap`, token `--font-display`); el texto corrido sigue en la fuente del sistema. Desde la fase de prueba (2026-10-27) el nombre del hero ya no usa `--text-hero` (token sin uso por ahora).
 
 Una familia sans serif del sistema (`--font-sans`), sin descargas. Pesos: 400, 500 y 700. Títulos grandes con tracking negativo (`--tracking-display`) e interlineado ajustado; texto corrido a 17px, interlineado 1.55, línea de hasta 62 caracteres. Si más adelante se quiere una fuente propia, entra con `display=swap`, máximo 2 familias y 4 pesos.
 
@@ -41,15 +41,18 @@ Contrastes ya medidos en `docs/PLAN.md`; todos los pares de texto pasan 4.5:1.
 
 ## Secciones
 
-**Rediseño (2026-10-26):** Hero tipo cartel (nombre a dos líneas, rol y botones a la izquierda, tagline a la derecha); Proyectos como columna XMB con detalle al lado; Sobre mí con texto grande y ficha de datos; Skills en filas editoriales; Contacto con email grande y botón de copiar; footer con el nombre a todo el ancho. La tabla de abajo es la versión anterior.
+Estado actual (fase de prueba de diseño, 2026-10-27). Orden en la página: Hero, Proyectos, Skills, Sobre mí, Contacto.
 
 | Sección | Qué lleva | Composición |
 |---|---|---|
-| Hero | Nombre, "Fullstack Developer", la frase de valor, botones "Ver proyectos" y "Contacto" | Nombre a `--text-display` ocupando el ancho, frase debajo, botones en la misma línea de base |
-| Sobre mí | 2-3 párrafos cortos, sin foto | Columna de texto a la izquierda y los links (LinkedIn, GitHub) a la derecha |
-| Proyectos | 4 tarjetas: imagen, título, descripción, tags, repo y demo | Grilla de 2 columnas en escritorio, 1 en móvil; tarjetas de vidrio |
-| Skills | Frontend, Backend y Herramientas | Tres columnas de texto, sin barras ni íconos |
-| Contacto | Email, LinkedIn, GitHub | Frase grande con el email como link, links debajo |
+| Hero | Línea "Fullstack Developer / año", nombre en dos tonos ("Gabriel Ignacio" en `--text`, "Roel" en `--text-muted`), tagline con palabras clave resaltadas y link "Más sobre mí", estado "Disponible para trabajar" con punto oliva, botones "CV" (solo si hay PDF), "Ver proyectos" y "Contacto" | Bloque compacto en dos columnas (`2fr 1fr`): presentación a la izquierda y "Qué hago" (título y pasos) a la derecha; una columna en móvil. Sin parallax |
+| Proyectos | Lista de proyectos y el detalle del elegido: imagen, título, descripción, tags, demo y repo | Columna XMB (`tablist`) con el detalle al lado; en móvil, fila deslizable arriba |
+| Skills | Frontend, Backend y Herramientas, con una frase de apoyo | Tarjetas de vidrio con ícono en burbuja, título y chips; rayos de luz (`SideRays`) dentro de cada tarjeta; 2 columnas, la última a todo el ancho |
+| Sobre mí | Texto (hoy Lorem ipsum) y botones LinkedIn y GitHub | Una columna, sin gráfico (el de puntos `</>` se probó y se descartó) |
+| Contacto | Frase, email grande, "Copiar email", LinkedIn y GitHub | Columna única |
+| Footer | "© año nombre" y "Volver arriba" | Una línea |
+
+Historial: en el rediseño del 2026-10-26 el Hero era un cartel con el nombre a todo el ancho y parallax, Sobre mí tenía una ficha de datos y Skills eran filas editoriales; la fase de prueba los reemplazó.
 
 ## Qué se evita
 

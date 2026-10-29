@@ -1,66 +1,99 @@
-/* Cartel: el nombre ocupa el ancho y el resto se apoya debajo */
+/* Bloque compacto: presentación a la izquierda, "Qué hago" a la derecha, centrado en la pantalla */
 .hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: var(--space-7);
+  display: grid;
+  align-content: center;
+  gap: var(--space-8);
   min-height: calc(100svh - var(--space-8));
   padding-block: var(--space-8);
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Etiquetas en minúscula y apagadas: sin mayúsculas chicas (ver direction.md) */
+.label {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
 .name {
   margin: 0;
-  font-size: var(--text-hero);
+  font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-display);
 }
 
-.meta {
-  display: grid;
-  gap: var(--space-5);
-}
-
-.role {
-  margin: 0;
-  color: var(--primary-text);
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-medium);
-  line-height: var(--leading-snug);
+/* El apellido en un segundo tono */
+.last {
+  color: var(--text-muted);
 }
 
 .tagline {
   margin: 0;
   max-width: var(--measure);
+  color: var(--text-muted);
   font-size: var(--text-lg);
+}
+
+.tagline strong {
+  color: var(--text);
+  font-weight: var(--weight-medium);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.dot {
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--primary-text);
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-3);
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.asideTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+}
+
+.steps {
+  margin: 0;
+  color: var(--text-muted);
 }
 
 @media (min-width: 48rem) {
-  .meta {
-    grid-template-columns: 1fr 1.4fr;
-    grid-template-areas:
-      'role tagline'
-      'actions tagline';
-    column-gap: var(--space-8);
+  .hero {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+    column-gap: var(--space-9);
   }
 
-  .role {
-    grid-area: role;
-  }
-
-  .tagline {
-    grid-area: tagline;
-  }
-
-  .actions {
-    grid-area: actions;
-    align-self: end;
+  /* Alinea "Qué hago" con la etiqueta de arriba a la izquierda */
+  .aside {
+    padding-top: var(--space-1);
   }
 }

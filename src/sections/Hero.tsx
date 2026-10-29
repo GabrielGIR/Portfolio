@@ -1,6 +1,4 @@
 import { useMemo, useRef } from 'react'
-import { gsap } from 'gsap'
-import { useGSAP } from '@gsap/react'
 import Icon from '../components/Icon'
 import SplitText from '../components/SplitText'
 import { useReveal } from '../hooks/useReveal'
@@ -9,60 +7,71 @@ import { profile } from '../data/profile'
 import layout from '../styles/layout.module.css'
 import styles from './Hero.module.css'
 
+// Parte la tagline en tramos; los que son palabras clave de `profile.keywords` van resaltados.
+const keys = new RegExp(`(${profile.keywords.join('|')})`, 'i')
+const taglineParts = profile.tagline.split(keys)
+const year = new Date().getFullYear()
+
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
   useReveal(ref)
   // Estable entre renders: SplitText reinicia su animación si cambia alguna prop.
-  // Al bajar, el nombre y el resto se van a distinta velocidad (dos capas de profundidad).
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia()
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const scrollTrigger = { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: 0.5 }
-        gsap.to('h1', { yPercent: -30, opacity: 0.2, ease: 'none', scrollTrigger })
-        gsap.to(`.${styles.meta}`, { yPercent: -60, opacity: 0, ease: 'none', scrollTrigger })
-      })
-    },
-    { scope: ref },
-  )
   const motion = useMemo(
     () => ({
       duration: seconds('--duration-slow'),
       delay: seconds('--duration-fast') * 1000,
       ease: ease('--ease-out'),
+      textAlign: 'left' as const,
+      splitType: 'words' as const,
+      effect: 'wave' as const,
+      trigger: 'load' as const,
     }),
     [],
   )
+  const primary = `${layout.button} ${layout.buttonPrimary}`
 
   return (
     <section ref={ref} id="inicio" className={`${layout.container} ${styles.hero}`}>
-      <SplitText
-        tag="h1"
-        text={profile.name}
-        className={styles.name}
-        textAlign="left"
-        splitType="words"
-        effect="wave"
-        trigger="load"
-        {...motion}
-      />
-      <div className={styles.meta}>
-        <p data-reveal className={styles.role}>
-          {profile.role}
+      <div className={styles.main}>
+        <p data-reveal className={styles.label}>
+          {profile.role} / {year}
         </p>
+        <h1 className={styles.name}>
+          <SplitText tag="span" text={profile.firstName} {...motion} />{' '}
+          <SplitText tag="span" text={profile.lastName} className={styles.last} {...motion} />
+        </h1>
         <p data-reveal className={styles.tagline}>
-          {profile.tagline}
+          {taglineParts.map((part, i) =>
+            i % 2 ? <strong key={i}>{part}</strong> : part,
+          )}{' '}
+          <a href="#sobre-mi">Más sobre mí</a>
+        </p>
+        <p data-reveal className={styles.status}>
+          <span className={styles.dot} aria-hidden="true" />
+          {profile.availability}
         </p>
         <div data-reveal className={styles.actions}>
-          <a className={`${layout.button} ${layout.buttonPrimary}`} href="#proyectos">
+          {profile.cvUrl && (
+            <a className={primary} href={profile.cvUrl} target="_blank" rel="noopener noreferrer">
+              <Icon name="file" className={layout.arrow} />
+              CV
+            </a>
+          )}
+          <a className={profile.cvUrl ? layout.button : primary} href="#proyectos">
+            <Icon name="proyectos" className={layout.arrow} />
             Ver proyectos
-            <Icon name="arrow-down" className={layout.arrow} />
           </a>
           <a className={layout.button} href="#contacto">
+            <Icon name="contacto" className={layout.arrow} />
             Contacto
           </a>
         </div>
       </div>
+      <aside data-reveal className={styles.aside} aria-label="Qué hago">
+        <p className={styles.label}>Qué hago</p>
+        <p className={styles.asideTitle}>{profile.whatIDo.title}</p>
+        <p className={styles.steps}>{profile.whatIDo.steps.join(' · ')}</p>
+      </aside>
     </section>
   )
 }

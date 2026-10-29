@@ -20,6 +20,8 @@
   display: flex;
   flex: none;
   flex-direction: column;
+  width: max-content;
+  max-width: 75vw;
   gap: var(--space-1);
   padding: var(--space-3) var(--space-4);
   border: 1px solid transparent;
@@ -97,6 +99,11 @@
   /* El ítem elegido crece hacia la derecha, como en la columna del XMB */
   .item[aria-selected='true'] {
     transform: scale(var(--scale-focus));
+  }
+
+  .item {
+    width: auto;
+    max-width: none;
   }
 
   .marker {

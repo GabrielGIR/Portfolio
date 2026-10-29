@@ -13,39 +13,19 @@ export default function About() {
   return (
     <section ref={ref} id="sobre-mi" className={`${layout.container} ${layout.section}`}>
       <SectionHeader icon="sobre-mi" title="Sobre mí" />
-      <div className={styles.grid}>
+      <div className={styles.copy}>
         <p data-reveal className={styles.text}>
           {profile.about}
         </p>
-        <div data-reveal className={styles.card}>
-          <dl className={styles.facts}>
-            {profile.highlights.map((h) => (
-              <div key={h.label}>
-                <dt>{h.label}</dt>
-                <dd>{h.value}</dd>
-              </div>
-            ))}
-          </dl>
-          <div className={styles.links}>
-            <a
-              className={layout.button}
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-              <Icon name="arrow-out" className={layout.arrow} />
-            </a>
-            <a
-              className={layout.button}
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-              <Icon name="arrow-out" className={layout.arrow} />
-            </a>
-          </div>
+        <div data-reveal className={styles.links}>
+          <a className={layout.button} href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+            <Icon name="arrow-out" className={layout.arrow} />
+          </a>
+          <a className={layout.button} href={profile.github} target="_blank" rel="noopener noreferrer">
+            GitHub
+            <Icon name="arrow-out" className={layout.arrow} />
+          </a>
         </div>
       </div>
     </section>
